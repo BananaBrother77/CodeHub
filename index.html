@@ -17,16 +17,23 @@
         <h1 class="title">CodeHub</h1>
       </div>
       <nav class="nav-container">
-          <button class="nav-btn home">Home</button>
-          <button class="nav-btn html">HTML</button>
-          <button class="nav-btn css">CSS</button>
-          <button class="nav-btn js">JavaScript</button>
-          <button class="nav-btn ts">TypeScript</button>
-          <button class="nav-btn settings">Settings</button>
+          <button class="nav-btn home" data-target="home">Home</button>
+          <button class="nav-btn html" data-target="html">HTML</button>
+          <button class="nav-btn css" data-target="css">CSS</button>
+          <button class="nav-btn js" data-target="js">JavaScript</button>
+          <button class="nav-btn ts" data-target="ts">TypeScript</button>
+          <button class="nav-btn settings" data-target="settings">Settings</button>
       </nav>
     </section>
 
-    <section class="html-container disabled">
+    <section id="home" class="tab home-container">
+        <h2 class="section-title">Welcome to CodeHub</h2>
+        <p class="section-description">
+            Your one-stop resource hub for web development.
+        </p>
+    </section>
+
+    <section id="html" class="tab html-container disabled">
         <h2 class="section-title">HTML Resources</h2>
         <div class="cards-container">
             <div class="resource-card">
