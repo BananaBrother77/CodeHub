@@ -1,0 +1,139 @@
+:root {
+  --bg: #070708;
+  --panel: #0e1113;
+  --txt-color: #eef2f7;
+  --muted: #9aa6b2;
+  --accent: #1e90ff;
+  --btn-border: rgba(255, 255, 255, 0.06);
+  --btn-hover: rgba(255, 255, 255, 0.03);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg);
+  color: var(--txt-color);
+}
+
+.disabled {
+    display: none;
+}
+
+.selection-container {
+  background-color: transparent;
+  padding: 1rem 2rem;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.title {
+  color: var(--txt-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.nav-container {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  padding: 0.56rem 1rem;
+  background: transparent;
+  color: var(--txt-color);
+  border: 1px solid var(--btn-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.98rem;
+  font-weight: 600;
+  transition: background 160ms ease, transform 120ms ease,
+    border-color 160ms ease;
+}
+
+.nav-btn:hover {
+  background: var(--btn-hover);
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.nav-btn.home {
+  background: linear-gradient(180deg, #ff6b61, #e74c3c);
+  color: #0b0b0b;
+  border: none;
+}
+
+.nav-btn.home:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+.nav-btn.settings {
+  margin-left: auto;
+  background: linear-gradient(180deg, #6366f1, #4f46e5);
+  color: #ffffff;
+  border: none;
+}
+
+.nav-btn.settings:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.nav-btn.html {
+  color: #ff6b35;
+}
+.nav-btn.css {
+  color: #0066cc;
+}
+.nav-btn.js {
+  color: #f7df1e;
+}
+.nav-btn.ts {
+  color: #2b7a0b;
+}
+
+.selection-container {
+  background: linear-gradient(
+    90deg,
+    rgba(14, 17, 19, 0.95),
+    rgba(20, 25, 30, 0.95)
+  );
+  border-bottom: 2px solid var(--accent);
+}
+
+.nav-btn {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+@media (max-width: 640px) {
+  .selection-container {
+    padding: 0.8rem 1rem;
+  }
+  .title {
+    font-size: 1.4rem;
+  }
+  .nav-container {
+    justify-content: center;
+  }
+}
