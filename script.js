@@ -1,3 +1,6 @@
+let currentTab = '';
+const savedTabs = [];
+
 function changeSection() {
   const tabBtns = document.querySelectorAll('.card');
   
@@ -5,12 +8,12 @@ function changeSection() {
     btn.addEventListener('click', () => {
       const allTabs = document.querySelectorAll('.tab');
       const targetId = btn.getAttribute('data-target');
-      const target = document.getElementById(targetId);
+      currentTab = document.getElementById(targetId);
       
-      if (target) {
+      if (currentTab) {
         allTabs.forEach(tab => tab.classList.remove('is-active'));
-        target.classList.add('is-active');
-        void target.offsetWidth;
+        currentTab.classList.add('is-active');
+        void currentTab.offsetWidth;
         window.scrollTo(0, 0);
       }
       
@@ -39,26 +42,70 @@ function showAddCodeMenu() {
 }
 
 function cancelAddCodeMenu() {
-   cardNameInput.value = '';
-   cardDescInput.value = '';
-   cardCodeInput.value = '';
-   
-   addCodeMenu.classList.remove('is-visible');
-   addCodeMenu.classList.add('is-closing');
-   addCodeOverlay.classList.remove('is-visible');
-   
-   setTimeout(() => {
-     addCodeMenu.classList.remove('is-closing');
-   }, 300);
+  cardNameInput.value = '';
+  cardDescInput.value = '';
+  cardCodeInput.value = '';
+  
+  addCodeMenu.classList.remove('is-visible');
+  addCodeMenu.classList.add('is-closing');
+  addCodeOverlay.classList.remove('is-visible');
+  
+  setTimeout(() => {
+    addCodeMenu.classList.remove('is-closing');
+  }, 300);
 }
 
 function confirmAddingCode() {
   if (cardNameInput.value.trim() !== '' && cardDescInput.value.trim() !== '' && cardCodeInput.value.trim() !== '') {
-    alert('success');
+    createSnippetCard();
   } else {
-    alert('error');
+    
   }
 }
+
+function createSnippetCard() {
+  if (!currentTab) return;
+  
+  const newSnippet = {
+    id: Date.now(),
+    name: cardNameInput.value.trim(),
+    desc: cardDescInput.value.trim(),
+    code: cardCodeInput.value.trim(),
+    category: currentTab.id
+  }
+  
+  savedTabs.push(newSnippet);
+  
+  renderCard(newSnippet);
+  
+  localStorage.setItem('savedTabs', savedTabs);
+  
+  cancelAddCodeMenu();
+}
+
+function renderCard(snippet) {
+  const targetTab = document.getElementById(snippet.category)
+  if (!targetTab) return;
+  
+  const card = document.createElement('div');
+  card.classList.add('snippet-card');
+  
+  card.innerHTML = `
+    <h3 class="snippet-title"></h3>
+    <div class="separator"></div>
+    <p class="title-desc"></p>
+    <div class="code-display">
+      <pre><code></code></pre>
+    </div>
+  `;
+  
+  card.querySelector('.snippet-title').textContent = cardNameInput.value.trim();
+  card.querySelector('.title-desc').textContent = cardDescInput.value.trim();
+  card.querySelector('code').textContent = cardCodeInput.value.trim();
+  
+  targetTab.appendChild(card);
+}
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
