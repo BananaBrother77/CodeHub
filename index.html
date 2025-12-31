@@ -1,48 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CodeHub</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <section class="selection-container">
-<div class="logo-container">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/919/919828.png"
-          alt="CodeHub Logo"
-          class="logo"
-        />
-        <h1 class="title">CodeHub</h1>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>CodeHub</title>
+</head>
+
+<body>
+  
+  <header class="header-title">
+    <div class="brand">
+      <h1 class="title">CodeHub</h1>
+      <p class="title-desc">Find your code</p>
+    </div>
+    <div class="creator">
+      <img class="profile-img" src="https://raw.githubusercontent.com/BananaBrother77/global-assets/refs/heads/main/profile.jpeg" alt="Profile" />
+    </div>
+  </header>
+  
+  <div class="global-search-container">
+    <input type="text" id="globalSearch" placeholder="Search code...">
+  </div>
+  
+  <section id="home" class="tab is-active">
+    <h2 class="section-title">Kategorien</h2>
+    <div class="card-grid">
+      <div class="card" data-target="html">
+        <h3>HTML Tags</h3>
+        <p>Struktur und Elemente deiner Website.</p>
       </div>
-      <nav class="nav-container">
-          <button class="nav-btn home" data-target="home">Home</button>
-          <button class="nav-btn html" data-target="html">HTML</button>
-          <button class="nav-btn css" data-target="css">CSS</button>
-          <button class="nav-btn js" data-target="js">JavaScript</button>
-          <button class="nav-btn ts" data-target="ts">TypeScript</button>
-          <button class="nav-btn settings" data-target="settings">Settings</button>
-      </nav>
-    </section>
+      <div class="card">
+        <h3>CSS Properties</h3>
+        <p>Styling, Layouts und Animationen.</p>
+      </div>
+      <div class="card">
+        <h3>JavaScript</h3>
+        <p>Logik und Interaktivität.</p>
+      </div>
+      <div class="card">
+        <h3>TypeScript</h3>
+        <p>Only possible in TypeScript</p>
+      </div>
+    </div>
+  </section class="home">
+  
+  <div class="overlay" id="overlay"></div>
 
-    <section id="home" class="tab home-container">
-        <h2 class="section-title">Welcome to CodeHub</h2>
-        <p class="section-description">
-            Your one-stop resource hub for web development.
-        </p>
-    </section>
+  <div class="add-code-menu-container" id="addCodeMenu">
+    <div class="add-code-menu-title-container">
+      <h3 class="add-code-menu-title">Add code</h3>
+    </div>
+    
+    <div class="add-code-menu-fields">
+      <input type="text" id="cardName" placeholder="Enter name..." />
+      <textarea id="cardDesc" rows="5" placeholder="Enter description..."></textarea>
+      <textarea id="cardCode" rows="8" placeholder="Enter code..."></textarea>
+    </div>
+    
+    <div class="add-code-menu-btns">
+      <button id="confirmBtn">Confirm</button>
+      <button id="cancelBtn">Cancel</button>
+    </div>
+  </div>
+  
+  <section id="html" class="tab">
+    <div class="add-button-container">
+      <button id="addCard">Add code</button>
+    </div>
+    
+    
+    <div class="snippet-card">
+      <h3 class="snippet-title">HTML Überschrift</h3>
+      <div class="separator"></div>
+      <p class="title-desc">Das h1-Tag wird für die wichtigste Überschrift einer Seite verwendet.</p>
+      
+      <div class="code-display">
+        <pre><code>&lt;h1&gt;Das ist ein Titel&lt;/h1&gt;</code></pre>
+      </div>
+    </div>
+    
+    
+  </section>
+  
+  <script src="script.js"></script>
+</body>
 
-    <section id="html" class="tab html-container disabled">
-        <h2 class="section-title">HTML Resources</h2>
-        <div class="cards-container">
-            <div class="resource-card">
-            <h3 class="card-title">HTML Basics</h3>
-            <p class="card-description">Learn the fundamentals of HTML.</p>
-            <a href="https://www.w3schools.com/html/" class="card-link">Visit W3Schools</a>
-            </div>
-    </section>
-
-    <script src="script.js"></script>
-  </body>
 </html>
