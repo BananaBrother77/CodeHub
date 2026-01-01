@@ -24,6 +24,16 @@ function initStaticDeleteButtons() {
   });
 }
 
+function initStaticCopyButtons() {
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.onclick = (e) => {
+      const card = e.target.closest('.snippet-card');
+      const codeToCopy = card.querySelector('code').textContent;
+      navigator.clipboard.writeText(codeToCopy);
+    };
+  });
+}
+
 searchInput.addEventListener('input', (e) => {
   const term = e.target.value.toLowerCase().trim();
   const homeSection = document.getElementById('home');
@@ -163,7 +173,10 @@ function renderCard(snippet) {
   card.innerHTML = `
     <div class="card-header">
       <h3 class="snippet-title"></h3>
-      <button class="delete-btn">&times;</button>
+        <div class="header-actions">
+          <img src="assets/img/copy-icon.png" class="copy-btn" />
+          <button class="delete-btn">&times;</button>
+        </div>
     </div>
     <div class="separator"></div>
     <p class="title-desc"></p>
@@ -186,6 +199,13 @@ function renderCard(snippet) {
       card.remove();
     }
   };
+  
+  card.querySelector('.copy-btn').onclick = () => {
+    const codeToCopy = snippet.code;
+    navigator.clipboard.writeText(codeToCopy);
+  };
+  
+  
   targetTab.appendChild(card);
 }
 
@@ -196,6 +216,7 @@ function loadSavedSnippets() {
 document.addEventListener('DOMContentLoaded', () => {
   loadSavedSnippets();
   initStaticDeleteButtons();
+  initStaticCopyButtons();
   changeSection();
   showAddCodeMenu();
   currentTab = document.querySelector('.tab.is-active');

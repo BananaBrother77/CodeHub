@@ -395,15 +395,13 @@ main {
   font-size: 0.85rem;
 }
 
-/* Der Container oben in der Karte */
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  gap: 10px;
 }
 
-/* Das rote X zum Löschen */
 .delete-btn {
   background: none;
   border: none;
@@ -418,6 +416,32 @@ main {
   color: #ff3333;
   transform: scale(1.2);
 }
+
+.copy-btn {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+  object-fit: contain;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 
 
 @keyframes fadeInUp {
