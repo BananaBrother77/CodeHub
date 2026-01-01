@@ -170,24 +170,30 @@ function renderCard(snippet) {
   
   const card = document.createElement('div');
   card.classList.add('snippet-card');
+  
   card.innerHTML = `
     <div class="card-header">
       <h3 class="snippet-title"></h3>
-        <div class="header-actions">
-          <img src="assets/img/copy-icon.png" class="copy-btn" />
-          <button class="delete-btn">&times;</button>
-        </div>
+      <div class="header-actions">
+        <img src="assets/img/copy-icon.png" class="copy-btn" title="Copy Code" />
+        <button class="delete-btn">&times;</button>
+      </div>
     </div>
     <div class="separator"></div>
     <p class="title-desc"></p>
     <div class="code-display">
-      <pre><code></code></pre>
+      <pre><code class="language-${snippet.category}"></code></pre>
     </div>
   `;
   
   card.querySelector('.snippet-title').textContent = snippet.name;
   card.querySelector('.title-desc').textContent = snippet.desc;
-  card.querySelector('code').textContent = snippet.code;
+  const codeElement = card.querySelector('code');
+  codeElement.textContent = snippet.code;
+  
+  if (window.Prism) {
+    Prism.highlightElement(codeElement);
+  }
   
   card.querySelector('.delete-btn').onclick = () => {
     if (confirm("Delete this snippet?")) {
@@ -205,9 +211,9 @@ function renderCard(snippet) {
     navigator.clipboard.writeText(codeToCopy);
   };
   
-  
   targetTab.appendChild(card);
 }
+
 
 function loadSavedSnippets() {
   savedSnippets.forEach(snippet => renderCard(snippet));
@@ -219,7 +225,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initStaticCopyButtons();
   changeSection();
   showAddCodeMenu();
+  
+  if (window.Prism) {
+    Prism.highlightAll();
+  }
+  
   currentTab = document.querySelector('.tab.is-active');
   const activeBtn = document.querySelector('.nav-btns button.active-nav');
-  if (activeBtn) moveNavIndicator(activeBtn);
+  if (activeBtn) {
+    setTimeout(() => moveNavIndicator(activeBtn), 100);
+  }
 });

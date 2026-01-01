@@ -322,7 +322,6 @@ main {
 
 #cardCode {
   font-family: 'Consolas', 'Monaco', monospace;
-  color: #7b84ff;
 }
 
 .add-code-menu-btns {
@@ -391,8 +390,19 @@ main {
 
 .code-display code {
   font-family: 'Consolas', 'Monaco', monospace;
-  color: #7b84ff;
   font-size: 0.85rem;
+}
+
+pre[class*="language-"] {
+  background: var(--code-bg) !important;
+  margin: 0 !important;
+  padding: 10px !important;
+  border-radius: 8px;
+}
+
+code[class*="language-"] {
+  font-size: 0.9rem !important;
+  text-shadow: none !important;
 }
 
 .card-header {
@@ -517,4 +527,11 @@ main {
     max-width: 300px;
     font-size: 1rem;
   }
+}
+
+/* Entferne falls vorhanden jegliche "color" Angabe aus diesem Block: */
+.code-display code {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.85rem;
+  /* KEINE color: ... Zuweisung hier! */
 }
