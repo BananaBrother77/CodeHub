@@ -72,7 +72,6 @@ main {
 
 .nav-btns {
   position: relative;
-  /* Wichtig für die Positionierung des Sliders */
   display: flex;
   gap: 12px;
   background-color: rgba(255, 255, 255, 0.03);
@@ -84,7 +83,6 @@ main {
 .nav-btns button {
   position: relative;
   z-index: 2;
-  /* Text muss ÜBER dem Slider liegen */
   background-color: transparent;
   color: var(--text-sec);
   border: none;
@@ -95,10 +93,8 @@ main {
   font-size: 0.85rem;
   cursor: pointer;
   transition: color 0.3s ease;
-  /* Nur Textfarbe animieren, Hintergrund macht der Slider */
 }
 
-/* Der blaue Hintergrund, der slidet */
 .nav-indicator {
   position: absolute;
   z-index: 1;
@@ -106,23 +102,19 @@ main {
   left: 8px;
   height: calc(100% - 16px);
   background-color: var(--accent-color);
-  /* DEIN Blau */
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  /* Der Slide-Effekt */
 }
 
 .nav-btns button:hover {
   color: var(--text-main);
-  /* Hover Hintergrund nur ganz leicht, damit es den Slider nicht stört */
   background-color: rgba(255, 255, 255, 0.05);
 }
 
 .nav-btns button.active-nav {
   color: var(--text-main);
   background-color: transparent;
-  /* Entfernt, da der Slider jetzt hier liegt */
   box-shadow: none;
 }
 
@@ -529,9 +521,7 @@ code[class*="language-"] {
   }
 }
 
-/* Entferne falls vorhanden jegliche "color" Angabe aus diesem Block: */
 .code-display code {
   font-family: 'Consolas', 'Monaco', monospace;
   font-size: 0.85rem;
-  /* KEINE color: ... Zuweisung hier! */
 }
