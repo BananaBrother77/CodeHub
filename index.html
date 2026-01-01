@@ -1,11 +1,30 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <title>CodeHub | Your Personal Code Library</title>
+  <meta name="title" content="CodeHub | Your Personal Code Library">
+  <meta name="description" content="Organize, search and store your favorite HTML, CSS, and JavaScript snippets. Your digital notebook for faster web development.">
+  <meta name="keywords" content="CodeHub, Code Snippets, Web Development, HTML, CSS, JS, Developer Tools, BananaBrother77">
+  <meta name="author" content="BananaBrother77">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://BananaBrother77.github.io/CodeHub/">
+  <meta property="og:title" content="CodeHub - Find your code faster">
+  <meta property="og:description" content="My personal collection of useful code snippets for web development. Searchable, organized, and always ready.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/BananaBrother77/global-assets/refs/heads/main/profile.jpeg">
+  
+  <meta name="theme-color" content="#2d3436">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CodeHub">
+  
+  <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/BananaBrother77/global-assets/refs/heads/main/profile.jpeg">
+  
   <link rel="stylesheet" href="style.css">
-  <title>CodeHub</title>
 </head>
 
 <body>
@@ -16,38 +35,50 @@
       <p class="title-desc">Find your code</p>
     </div>
     <div class="creator">
-      <img class="profile-img" src="https://raw.githubusercontent.com/BananaBrother77/global-assets/refs/heads/main/profile.jpeg" alt="Profile" />
+      <img id="profileImg" src="https://raw.githubusercontent.com/BananaBrother77/global-assets/refs/heads/main/profile.jpeg" alt="Profile" />
     </div>
   </header>
+  
+  <nav class="sub-nav">
+    <div class="nav-btns">
+      <div class="nav-indicator"></div>
+      
+      <button id="homeBtn" data-target="home" class="active-nav">HOME</button>
+      <button id="htmlBtn" data-target="html">HTML</button>
+      <button id="cssBtn" data-target="css">CSS</button>
+      <button id="jsBtn" data-target="js">JS</button>
+      <button id="tsBtn" data-target="ts">TS</button>
+    </div>
+  </nav>
   
   <div class="global-search-container">
     <input type="text" id="globalSearch" placeholder="Search code...">
   </div>
   
   <section id="home" class="tab is-active">
-    <h2 class="section-title">Kategorien</h2>
+    <h2 class="section-title">Categories</h2>
     <div class="card-grid">
       <div class="card" data-target="html">
         <h3>HTML Tags</h3>
-        <p>Struktur und Elemente deiner Website.</p>
+        <p>Structure and elements of your website.</p>
       </div>
-      <div class="card">
+      <div class="card" data-target="css">
         <h3>CSS Properties</h3>
-        <p>Styling, Layouts und Animationen.</p>
+        <p>Styling, layouts and animations.</p>
       </div>
-      <div class="card">
+      <div class="card" data-target="js">
         <h3>JavaScript</h3>
-        <p>Logik und Interaktivität.</p>
+        <p>Logic and interactivity.</p>
       </div>
-      <div class="card">
+      <div class="card" data-target="ts">
         <h3>TypeScript</h3>
         <p>Only possible in TypeScript</p>
       </div>
     </div>
-  </section class="home">
+  </section>
   
   <div class="overlay" id="overlay"></div>
-
+  
   <div class="add-code-menu-container" id="addCodeMenu">
     <div class="add-code-menu-title-container">
       <h3 class="add-code-menu-title">Add code</h3>
@@ -67,24 +98,80 @@
   
   <section id="html" class="tab">
     <div class="add-button-container">
-      <button id="addCard">Add code</button>
+      <button class="add-card">Add code</button>
     </div>
     
-    
-    <div class="snippet-card">
-      <h3 class="snippet-title">HTML Überschrift</h3>
+    <div class="snippet-card" data-id="static-html">
+      <div class="card-header">
+        <h3 class="snippet-title">HTML Button</h3>
+        <button class="delete-btn">&times;</button>
+      </div>
       <div class="separator"></div>
-      <p class="title-desc">Das h1-Tag wird für die wichtigste Überschrift einer Seite verwendet.</p>
-      
+      <p class="title-desc">A standard button element used for user interactions.</p>
       <div class="code-display">
-        <pre><code>&lt;h1&gt;Das ist ein Titel&lt;/h1&gt;</code></pre>
+        <pre><code>&lt;button type="button" id="btn"&gt;Click Me!&lt;/button&gt;</code></pre>
       </div>
     </div>
+  </section>
+  
+  <section id="css" class="tab">
+    <div class="add-button-container">
+      <button class="add-card">Add code</button>
+    </div>
     
+    <div class="snippet-card" data-id="static-css">
+      <div class="card-header">
+        <h3 class="snippet-title">Background Color</h3>
+        <button class="delete-btn">&times;</button>
+      </div>
+      <div class="separator"></div>
+      <p class="title-desc">How to change the background color of an element.</p>
+      <div class="code-display">
+        <pre><code>.container {
+  background-color: #3498db;
+}</code></pre>
+      </div>
+    </div>
+  </section>
+  
+  <section id="js" class="tab">
+    <div class="add-button-container">
+      <button class="add-card">Add code</button>
+    </div>
     
+    <div class="snippet-card" data-id="static-js">
+      <div class="card-header">
+        <h3 class="snippet-title">Console Log</h3>
+        <button class="delete-btn">&times;</button>
+      </div>
+      <div class="separator"></div>
+      <p class="title-desc">The most common way to debug code and print values.</p>
+      <div class="code-display">
+        <pre><code>console.log("Hello, CodeHub!");</code></pre>
+      </div>
+    </div>
+  </section>
+  
+  <section id="ts" class="tab">
+    <div class="add-button-container">
+      <button class="add-card">Add code</button>
+    </div>
+    
+    <div class="snippet-card" data-id="static-ts">
+      <div class="card-header">
+        <h3 class="snippet-title">Type Declaration</h3>
+        <button class="delete-btn">&times;</button>
+      </div>
+      <div class="separator"></div>
+      <p class="title-desc">Strictly defining a variable as a string or number.</p>
+      <div class="code-display">
+        <pre><code>let username: string = "BananaBrother";</code></pre>
+      </div>
+    </div>
   </section>
   
   <script src="script.js"></script>
 </body>
 
 </html>
+
