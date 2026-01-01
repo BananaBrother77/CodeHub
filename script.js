@@ -1,21 +1,26 @@
-let currentTab = '';
+let currentTab = null;
 const savedSnippets = JSON.parse(localStorage.getItem('savedSnippets')) || [];
 const searchInput = document.getElementById('globalSearch');
 
-const profile = document.getElementById('profileImg');
-profile.addEventListener('click', () => {
-  window.location.href = 'https://BananaBrother77.github.io/AboutMe/';
-});
+const cardNameInput = document.getElementById('cardName');
+const cardDescInput = document.getElementById('cardDesc');
+const cardCodeInput = document.getElementById('cardCode');
+
+const profile = document.querySelector('.profile-img');
+if (profile) {
+  profile.addEventListener('click', () => {
+    window.location.href = 'https://BananaBrother77.github.io/AboutMe/';
+  });
+}
 
 function initStaticDeleteButtons() {
-  const staticDeleteBtns = document.querySelectorAll('.delete-btn');
-  staticDeleteBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  document.querySelectorAll('.delete-btn').forEach(btn => {
+    btn.onclick = (e) => {
       const card = e.target.closest('.snippet-card');
-      if (card && confirm("Do you want to delete this snippet?")) {
+      if (card && confirm("Do you want to delete this static snippet?")) {
         card.remove();
       }
-    });
+    };
   });
 }
 
@@ -52,8 +57,8 @@ searchInput.addEventListener('input', (e) => {
   });
   
   if (firstFoundTabId) {
-    const matchingNavBtn = document.querySelector(`.nav-btns button[data-target="${firstFoundTabId}"]`);
-    if (matchingNavBtn) moveNavIndicator(matchingNavBtn);
+    const matchingBtn = document.querySelector(`.nav-btns button[data-target="${firstFoundTabId}"]`);
+    if (matchingBtn) moveNavIndicator(matchingBtn);
   }
 });
 
@@ -100,8 +105,17 @@ function changeSection() {
   });
 }
 
-function createSnippetCard() {
-  if (!currentTab) return;
+function confirmAddingCode() {
+  if (!currentTab || currentTab.id === 'home') {
+    alert("Please select a category first!");
+    return;
+  }
+  
+  if (!cardNameInput.value || !cardCodeInput.value) {
+    alert("Name and Code are required!");
+    return;
+  }
+  
   const newSnippet = {
     id: Date.now(),
     name: cardNameInput.value.trim(),
@@ -109,9 +123,10 @@ function createSnippetCard() {
     code: cardCodeInput.value.trim(),
     category: currentTab.id
   };
+  
   savedSnippets.push(newSnippet);
-  renderCard(newSnippet);
   localStorage.setItem('savedSnippets', JSON.stringify(savedSnippets));
+  renderCard(newSnippet);
   cancelAddCodeMenu();
 }
 
@@ -119,8 +134,6 @@ function showAddCodeMenu() {
   const addCardBtns = document.querySelectorAll('.add-card');
   const addCodeMenu = document.getElementById('addCodeMenu');
   const addCodeOverlay = document.getElementById('overlay');
-  const cancelBtn = document.getElementById('cancelBtn');
-  const confirmBtn = document.getElementById('confirmBtn');
   
   addCardBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -129,22 +142,17 @@ function showAddCodeMenu() {
     });
   });
   
-  cancelBtn.addEventListener('click', () => cancelAddCodeMenu());
-  confirmBtn.addEventListener('click', () => confirmAddingCode());
+  document.getElementById('cancelBtn').onclick = cancelAddCodeMenu;
+  document.getElementById('confirmBtn').onclick = confirmAddingCode;
 }
 
 function cancelAddCodeMenu() {
-  const addCodeMenu = document.getElementById('addCodeMenu');
-  const addCodeOverlay = document.getElementById('overlay');
-  
-  document.getElementById('cardName').value = '';
-  document.getElementById('cardDesc').value = '';
-  document.getElementById('cardCode').value = '';
-  
-  addCodeMenu.classList.remove('is-visible');
-  addCodeOverlay.classList.remove('is-visible');
+  document.getElementById('addCodeMenu').classList.remove('is-visible');
+  document.getElementById('overlay').classList.remove('is-visible');
+  cardNameInput.value = '';
+  cardDescInput.value = '';
+  cardCodeInput.value = '';
 }
-
 
 function renderCard(snippet) {
   const targetTab = document.getElementById(snippet.category);
@@ -168,7 +176,7 @@ function renderCard(snippet) {
   card.querySelector('.title-desc').textContent = snippet.desc;
   card.querySelector('code').textContent = snippet.code;
   
-  card.querySelector('.delete-btn').addEventListener('click', () => {
+  card.querySelector('.delete-btn').onclick = () => {
     if (confirm("Delete this snippet?")) {
       const index = savedSnippets.findIndex(s => s.id === snippet.id);
       if (index !== -1) {
@@ -177,7 +185,7 @@ function renderCard(snippet) {
       }
       card.remove();
     }
-  });
+  };
   targetTab.appendChild(card);
 }
 
@@ -191,4 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
   changeSection();
   showAddCodeMenu();
   currentTab = document.querySelector('.tab.is-active');
+  const activeBtn = document.querySelector('.nav-btns button.active-nav');
+  if (activeBtn) moveNavIndicator(activeBtn);
 });
