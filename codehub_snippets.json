@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1000001,
+    "name": "Deduplication Filter",
+    "desc": "Checkt, ob Items bereits in einem Array existieren (Sammelalbum-Logik).",
+    "code": "const cleanList = newData.filter(newItem => \n  !oldData.some(oldItem => oldItem.id === newItem.id)\n);",
+    "category": "js"
+  },
+  {
+    "id": 1000002,
+    "name": "JSON Export Blob",
+    "desc": "Erstellt eine herunterladbare Datei aus einem JavaScript Objekt.",
+    "code": "const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });\nconst url = URL.createObjectURL(blob);\nconst link = document.createElement('a');\nlink.href = url;\nlink.download = 'backup.json';\nlink.click();",
+    "category": "js"
+  },
+  {
+    "id": 1000003,
+    "name": "Date.now() ID",
+    "desc": "Erzeugt eine (fast) immer einzigartige Nummer basierend auf der aktuellen Zeit.",
+    "code": "const uniqueId = Date.now(); // Gibt Millisekunden seit 1970 zurück",
+    "category": "js"
+  },
+  {
+    "id": 1000004,
+    "name": "Spread Operator",
+    "desc": "Packt ein Array aus, um die Inhalte einzeln in ein anderes Array zu schieben.",
+    "code": "savedSnippets.push(...newItems);",
+    "category": "js"
+  }
+]

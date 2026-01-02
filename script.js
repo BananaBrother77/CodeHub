@@ -13,6 +13,66 @@ if (profile) {
   });
 }
 
+function exportSnippets() {
+  const exportBtn = document.getElementById('exportBtn');
+  if (!exportBtn) return;
+  
+  exportBtn.onclick = () => {
+    const jsonString = JSON.stringify(savedSnippets);
+    const blob = new Blob([jsonString], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = "codehub_snippets.json";
+    
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+}
+
+function importSnippets() {
+  const importBtn = document.getElementById('importBtn');
+  if (!importBtn) return;
+  
+  importBtn.onclick = () => {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.json';
+    
+    fileInput.onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const importedData = JSON.parse(event.target.result);
+          
+          if (Array.isArray(importedData)) {
+            const newItems = importedData.filter(importSnippet => {
+              return !savedSnippets.some(existingSnippet => existingSnippet.id === importSnippet.id);
+            });
+            
+            savedSnippets.push(...newItems);
+            localStorage.setItem('savedSnippets', JSON.stringify(savedSnippets));
+            newItems.forEach(snippet => renderCard(snippet));
+            
+            alert(`${newItems.length} new Snippets imported!`);
+          }
+        } catch (err) {
+          alert("Error: The file is not a valid JSON.");
+        }
+      };
+      reader.readAsText(file);
+    };
+    
+    fileInput.click();
+  };
+}
+
+
+
 function initStaticDeleteButtons() {
   document.querySelectorAll('.delete-btn').forEach(btn => {
     btn.onclick = (e) => {
@@ -196,6 +256,7 @@ function renderCard(snippet) {
   }
   
   card.querySelector('.delete-btn').onclick = () => {
+  
     if (confirm("Delete this snippet?")) {
       const index = savedSnippets.findIndex(s => s.id === snippet.id);
       if (index !== -1) {
@@ -221,6 +282,8 @@ function loadSavedSnippets() {
 
 document.addEventListener('DOMContentLoaded', () => {
   loadSavedSnippets();
+  exportSnippets();
+  importSnippets();
   initStaticDeleteButtons();
   initStaticCopyButtons();
   changeSection();
