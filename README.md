@@ -23,4 +23,5 @@ CodeHub is a lightweight, personal snippet manager designed for web developers. 
 ```text
 ├── index.html      # Main application structure
 ├── style.css       # Custom styling and animations
-└── script.js      # Application logic and data handling
+├── sidebar.css     # Custom styling for the sidebar
+└── script.js       # Application logic and data handling
