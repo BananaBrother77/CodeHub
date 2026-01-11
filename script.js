@@ -6,10 +6,50 @@ const cardNameInput = document.getElementById('cardName');
 const cardDescInput = document.getElementById('cardDesc');
 const cardCodeInput = document.getElementById('cardCode');
 
-const profile = document.querySelector('.profile-img');
+const profile = document.getElementById('profileImg');
 if (profile) {
   profile.addEventListener('click', () => {
     window.location.href = 'https://BananaBrother77.github.io/AboutMe/';
+  });
+}
+
+function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  const toggleButton = document.getElementById('toggle-btn');
+  
+  sidebar.classList.toggle("close");
+  if (toggleButton) toggleButton.classList.toggle("rotate");
+
+  if (sidebar.classList.contains("close")) {
+    closeAllSubMenus();
+  }
+}
+
+function toggleSubMenu(button) {
+  const sidebar = document.getElementById("sidebar");
+  const toggleButton = document.getElementById('toggle-btn');
+  const subMenu = button.nextElementSibling;
+  
+  if (!subMenu.classList.contains('show')) {
+    closeAllSubMenus();
+  }
+
+  subMenu.classList.toggle("show");
+  button.classList.toggle("rotate");
+
+  if (sidebar.classList.contains('close')) {
+    sidebar.classList.remove('close');
+    if (toggleButton) toggleButton.classList.remove('rotate');
+  }
+}
+
+function closeAllSubMenus() {
+  const sidebar = document.getElementById("sidebar");
+  Array.from(sidebar.getElementsByClassName('show')).forEach(ul => {
+    ul.classList.remove('show');
+    if (ul.previousElementSibling) {
+      ul.previousElementSibling.classList.remove('rotate');
+    }
   });
 }
 
@@ -70,8 +110,6 @@ function importSnippets() {
     fileInput.click();
   };
 }
-
-
 
 function initStaticDeleteButtons() {
   document.querySelectorAll('.delete-btn').forEach(btn => {
@@ -137,8 +175,17 @@ function moveNavIndicator(btn) {
   if (indicator && btn) {
     indicator.style.width = btn.offsetWidth + "px";
     indicator.style.left = btn.offsetLeft + "px";
+    
+    // Auf Mobile: Den Button in die Mitte scrollen, wenn er außerhalb des Sichtfelds ist
+    if (window.innerWidth <= 768) {
+      btn.parentElement.scrollTo({
+        left: btn.offsetLeft - (btn.parentElement.offsetWidth / 2) + (btn.offsetWidth / 2),
+        behavior: 'smooth'
+      });
+    }
   }
 }
+
 
 function changeSection() {
   const tabBtns = document.querySelectorAll('.card, .nav-btns button');
@@ -256,7 +303,7 @@ function renderCard(snippet) {
   }
   
   card.querySelector('.delete-btn').onclick = () => {
-  
+    
     if (confirm("Delete this snippet?")) {
       const index = savedSnippets.findIndex(s => s.id === snippet.id);
       if (index !== -1) {
@@ -293,9 +340,13 @@ document.addEventListener('DOMContentLoaded', () => {
     Prism.highlightAll();
   }
   
-  currentTab = document.querySelector('.tab.is-active');
-  const activeBtn = document.querySelector('.nav-btns button.active-nav');
-  if (activeBtn) {
-    setTimeout(() => moveNavIndicator(activeBtn), 100);
+  const homeBtn = document.getElementById('homeBtn');
+  if (homeBtn) {
+    setTimeout(() => {
+      moveNavIndicator(homeBtn);
+      homeBtn.classList.add('active-nav');
+    }, 200);
   }
+  
+  currentTab = document.getElementById('home');
 });

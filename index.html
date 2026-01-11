@@ -35,170 +35,242 @@
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/BananaBrother77/global-assets/refs/heads/main/profile.jpeg">
   
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sidebar.css">
 </head>
 
 <body>
   
-  <header class="header-title">
-    <div class="brand">
-      <h1 class="title">CodeHub</h1>
-      <p class="title-desc">Find your code</p>
-    </div>
-    <div class="creator">
-      <img id="profileImg" src="https://raw.githubusercontent.com/BananaBrother77/global-assets/refs/heads/main/profile.jpeg" alt="Profile" />
-    </div>
-  </header>
+  <aside id="sidebar">
+    <ul>
+      <li>
+        <span class="logo">CodeHub</span>
+        <button onclick=toggleSidebar() id="toggle-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+            <path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z" />
+          </svg>
+        </button>
+      </li>
+      <li class="active">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+            <path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z" />
+          </svg>
+          <span>Home</span>
+        </p>
+      </li>
+      <li>
+        <button onclick=toggleSubMenu(this) class="dropdown-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+            <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Zm400-160v40q0 17 11.5 28.5T600-320q17 0 28.5-11.5T640-360v-40h40q17 0 28.5-11.5T720-440q0-17-11.5-28.5T680-480h-40v-40q0-17-11.5-28.5T600-560q-17 0-28.5 11.5T560-520v40h-40q-17 0-28.5 11.5T480-440q0 17 11.5 28.5T520-400h40Z" />
+          </svg>
+          <span>Create</span>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+            <path d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5Z" />
+          </svg>
+        </button>
+        <ul class="sub-menu">
+          <div>
+            <li>
+              <p>Folder</p>
+            </li>
+            <li>
+              <p>Snippet</p>
+            </li>
+          </div>
+        </ul>
+      </li>
+      <li>
+        <button onclick=toggleSubMenu(this) class="dropdown-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+            <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z" />
+          </svg>
+          <span>Standard</span>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+            <path d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5Z" />
+          </svg>
+        </button>
+        <ul class="sub-menu">
+          <div>
+            <li>
+              <p>HTML</p>
+            </li>
+            <li>
+              <p>CSS</p>
+            </li>
+            <li>
+              <p>JS</p>
+            </li>
+            <li>
+              <p>TS</p>
+            </li>
+          </div>
+        </ul>
+      </li>
+    </ul>
+  </aside>
   
-  <nav class="sub-nav">
-    <div class="nav-btns">
-      <div class="nav-indicator"></div>
+  <main>
+    
+    <header class="header-title">
+      <div class="brand">
+        <h1 class="title">CodeHub</h1>
+        <p class="title-desc">Find your code</p>
+      </div>
+      <div class="creator">
+        <img id="profileImg" src="https://raw.githubusercontent.com/BananaBrother77/global-assets/refs/heads/main/profile.jpeg" alt="Profile" />
+      </div>
+    </header>
+    
+    <nav class="sub-nav">
+      <div class="nav-btns">
+        <div class="nav-indicator"></div>
+        
+        <button id="homeBtn" data-target="home" class="active-nav">HOME</button>
+        <button id="htmlBtn" data-target="html">HTML</button>
+        <button id="cssBtn" data-target="css">CSS</button>
+        <button id="jsBtn" data-target="js">JS</button>
+        <button id="tsBtn" data-target="ts">TS</button>
+      </div>
+    </nav>
+    
+    <div class="global-search-container">
+      <input type="text" id="globalSearch" placeholder="Search code...">
+    </div>
+    
+    <section id="home" class="tab is-active">
+      <h2 class="section-title">Categories</h2>
+      <div class="card-grid">
+        <div class="card" data-target="html">
+          <h3>HTML Tags</h3>
+          <p>Structure and elements of your website.</p>
+        </div>
+        <div class="card" data-target="css">
+          <h3>CSS Properties</h3>
+          <p>Styling, layouts and animations.</p>
+        </div>
+        <div class="card" data-target="js">
+          <h3>JavaScript</h3>
+          <p>Logic and interactivity.</p>
+        </div>
+        <div class="card" data-target="ts">
+          <h3>TypeScript</h3>
+          <p>Only possible in TypeScript</p>
+        </div>
+      </div>
+    </section>
+    
+    <div class="jsonBtns">
+      <button id="exportBtn">Export</button>
+      <button id="importBtn">Import</button>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="add-code-menu-container" id="addCodeMenu">
+      <div class="add-code-menu-title-container">
+        <h3 class="add-code-menu-title">Add code</h3>
+      </div>
       
-      <button id="homeBtn" data-target="home" class="active-nav">HOME</button>
-      <button id="htmlBtn" data-target="html">HTML</button>
-      <button id="cssBtn" data-target="css">CSS</button>
-      <button id="jsBtn" data-target="js">JS</button>
-      <button id="tsBtn" data-target="ts">TS</button>
-    </div>
-  </nav>
-  
-  <div class="global-search-container">
-    <input type="text" id="globalSearch" placeholder="Search code...">
-  </div>
-  
-  <section id="home" class="tab is-active">
-    <h2 class="section-title">Categories</h2>
-    <div class="card-grid">
-      <div class="card" data-target="html">
-        <h3>HTML Tags</h3>
-        <p>Structure and elements of your website.</p>
+      <div class="add-code-menu-fields">
+        <input type="text" id="cardName" placeholder="Enter name..." />
+        <textarea id="cardDesc" rows="5" placeholder="Enter description..."></textarea>
+        <textarea id="cardCode" rows="8" placeholder="Enter code..."></textarea>
       </div>
-      <div class="card" data-target="css">
-        <h3>CSS Properties</h3>
-        <p>Styling, layouts and animations.</p>
+      
+      <div class="add-code-menu-btns">
+        <button id="confirmBtn">Confirm</button>
+        <button id="cancelBtn">Cancel</button>
       </div>
-      <div class="card" data-target="js">
-        <h3>JavaScript</h3>
-        <p>Logic and interactivity.</p>
-      </div>
-      <div class="card" data-target="ts">
-        <h3>TypeScript</h3>
-        <p>Only possible in TypeScript</p>
-      </div>
-    </div>
-  </section>
-  
-  <div class="jsonBtns">
-    <button id="exportBtn">Export</button>
-    <button id="importBtn">Import</button>
-  </div>
-  
-  <div class="overlay" id="overlay"></div>
-  
-  <div class="add-code-menu-container" id="addCodeMenu">
-    <div class="add-code-menu-title-container">
-      <h3 class="add-code-menu-title">Add code</h3>
     </div>
     
-    <div class="add-code-menu-fields">
-      <input type="text" id="cardName" placeholder="Enter name..." />
-      <textarea id="cardDesc" rows="5" placeholder="Enter description..."></textarea>
-      <textarea id="cardCode" rows="8" placeholder="Enter code..."></textarea>
-    </div>
-    
-    <div class="add-code-menu-btns">
-      <button id="confirmBtn">Confirm</button>
-      <button id="cancelBtn">Cancel</button>
-    </div>
-  </div>
-  
-  <section id="html" class="tab">
-    <div class="add-button-container">
-      <button class="add-card">Add code</button>
-    </div>
-    
-    <div class="snippet-card" data-id="static-html">
-      <div class="card-header">
-        <h3 class="snippet-title">HTML Button</h3>
-        <div class="header-actions">
-          <img src="assets/img/copy-icon.png" class="copy-btn" />
-          <button class="delete-btn">&times;</button>
+    <section id="html" class="tab">
+      <div class="add-button-container">
+        <button class="add-card">Add code</button>
+      </div>
+      
+      <div class="snippet-card" data-id="static-html">
+        <div class="card-header">
+          <h3 class="snippet-title">HTML Button</h3>
+          <div class="header-actions">
+            <img src="assets/img/copy-icon.png" class="copy-btn" />
+            <button class="delete-btn">&times;</button>
+          </div>
+        </div>
+        <div class="separator"></div>
+        <p class="title-desc">A standard button element used for user interactions.</p>
+        <div class="code-display">
+          <pre><code class="language-html">&lt;button type="button" id="btn"&gt;Click Me!&lt;/button&gt;</code></pre>
         </div>
       </div>
-      <div class="separator"></div>
-      <p class="title-desc">A standard button element used for user interactions.</p>
-      <div class="code-display">
-        <pre><code class="language-html">&lt;button type="button" id="btn"&gt;Click Me!&lt;/button&gt;</code></pre>
-      </div>
-    </div>
-  </section>
-  
-  <section id="css" class="tab">
-    <div class="add-button-container">
-      <button class="add-card">Add code</button>
-    </div>
+    </section>
     
-    <div class="snippet-card" data-id="static-css">
-      <div class="card-header">
-        <h3 class="snippet-title">Background Color</h3>
-        <div class="header-actions">
-          <img src="assets/img/copy-icon.png" class="copy-btn" />
-          <button class="delete-btn">&times;</button>
-        </div>
+    <section id="css" class="tab">
+      <div class="add-button-container">
+        <button class="add-card">Add code</button>
       </div>
-      <div class="separator"></div>
-      <p class="title-desc">How to change the background color of an element.</p>
-      <div class="code-display">
-        <pre><code class="language-css">.container {
+      
+      <div class="snippet-card" data-id="static-css">
+        <div class="card-header">
+          <h3 class="snippet-title">Background Color</h3>
+          <div class="header-actions">
+            <img src="assets/img/copy-icon.png" class="copy-btn" />
+            <button class="delete-btn">&times;</button>
+          </div>
+        </div>
+        <div class="separator"></div>
+        <p class="title-desc">How to change the background color of an element.</p>
+        <div class="code-display">
+          <pre><code class="language-css">.container {
   background-color: #3498db;
 }</code></pre>
-      </div>
-    </div>
-  </section>
-  
-  <section id="js" class="tab">
-    <div class="add-button-container">
-      <button class="add-card">Add code</button>
-    </div>
-    
-    <div class="snippet-card" data-id="static-js">
-      <div class="card-header">
-        <h3 class="snippet-title">Console Log</h3>
-        <div class="header-actions">
-          <img src="assets/img/copy-icon.png" class="copy-btn" />
-          <button class="delete-btn">&times;</button>
         </div>
       </div>
-      <div class="separator"></div>
-      <p class="title-desc">The most common way to debug code and print values.</p>
-      <div class="code-display">
-        <pre><code class="language-js">console.log("Hello, CodeHub!");</code></pre>
-      </div>
-    </div>
-  </section>
-  
-  <section id="ts" class="tab">
-    <div class="add-button-container">
-      <button class="add-card">Add code</button>
-    </div>
+    </section>
     
-    <div class="snippet-card" data-id="static-ts">
-      <div class="card-header">
-        <h3 class="snippet-title">Type Declaration</h3>
-        <div class="header-actions">
-          <img src="assets/img/copy-icon.png" class="copy-btn" />
-          <button class="delete-btn">&times;</button>
+    <section id="js" class="tab">
+      <div class="add-button-container">
+        <button class="add-card">Add code</button>
+      </div>
+      
+      <div class="snippet-card" data-id="static-js">
+        <div class="card-header">
+          <h3 class="snippet-title">Console Log</h3>
+          <div class="header-actions">
+            <img src="assets/img/copy-icon.png" class="copy-btn" />
+            <button class="delete-btn">&times;</button>
+          </div>
+        </div>
+        <div class="separator"></div>
+        <p class="title-desc">The most common way to debug code and print values.</p>
+        <div class="code-display">
+          <pre><code class="language-js">console.log("Hello, CodeHub!");</code></pre>
         </div>
       </div>
-      <div class="separator"></div>
-      <p class="title-desc">Strictly defining a variable as a string or number.</p>
-      <div class="code-display">
-        <pre><code class="language-ts">let username: string = "BananaBrother";</code></pre>
+    </section>
+    
+    <section id="ts" class="tab">
+      <div class="add-button-container">
+        <button class="add-card">Add code</button>
       </div>
-    </div>
-  </section>
+      
+      <div class="snippet-card" data-id="static-ts">
+        <div class="card-header">
+          <h3 class="snippet-title">Type Declaration</h3>
+          <div class="header-actions">
+            <img src="assets/img/copy-icon.png" class="copy-btn" />
+            <button class="delete-btn">&times;</button>
+          </div>
+        </div>
+        <div class="separator"></div>
+        <p class="title-desc">Strictly defining a variable as a string or number.</p>
+        <div class="code-display">
+          <pre><code class="language-ts">let username: string = "BananaBrother";</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
   
   <script src="script.js"></script>
 </body>
 
 </html>
-
